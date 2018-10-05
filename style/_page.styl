@@ -1,0 +1,231 @@
+@media screen
+  body
+    margin: auto 4rem
+    padding-left: 240px
+    padding-bottom: 4rem
+    max-width: 960px
+    font-size: 160%
+    line-height: 170%
+    // overflow-x: hidden
+
+  h1
+    margin: 8mm 0 2mm 0
+
+  h3, h4
+    margin-top: 3rem
+  .profile h4
+    margin-top: 0
+
+  pre
+    font-size: 120%;
+
+  p
+    text-align: initial
+
+  section
+    clear: both
+
+  article, section
+    margin-top: 5em
+
+  figure
+    margin: 2rem auto
+    max-width: 600px
+
+  nav#toc
+    position: fixed
+    background-color: #ffffff
+    top: 0
+    bottom: 0
+    left: 0
+    overflow-y: scroll
+    padding: 2rem 3rem
+    width: 240px
+    z-index: 1000
+
+    .toc-title
+      display: none
+
+    li > a:hover
+      background-color: rgba(0, 0, 0, 0.08)
+
+  section#index
+    display: none
+
+  span.footnote
+    // position: absolute
+    // display: inline-block
+    // max-width: 12rem
+    font-size: 100%
+    background-color: rgba(214, 255, 0, 0.4);
+    // opacity: 0.8
+  span.footnote::before
+    content: '[['
+  span.footnote::after
+    content: ']]'
+
+  a[data-ref="section"]
+  a[data-ref="subsection"]
+  a[data-ref="fig"]
+  a[data-ref="tbl"]
+    color: #bb0000
+    background-color: rgba(255, 0, 0, 0.3)
+  a[data-ref="section"]::before
+    content: 'XXX 章'
+  a[data-ref="subsection"]::before
+    content: 'XXX.XXX 章'
+  a[data-ref="fig"]::before
+    content: '図 XXX'
+  a[data-ref="tbl"]::before
+    content: '表 XXX'
+
+@media print
+  :root
+    widows: 3
+    orphans: 3
+    hyphens: auto
+    column-count: 2
+    column-gap: $column-gap-width
+
+  section#main h1,
+  section#main h2,
+  .one-column
+    column-span: all
+    float: block-start
+    float-reference: column
+
+  // h1, h2, h3, h4, h5, h6
+  //   color: #000000
+
+  // table
+  //   border-color: #000000
+
+// body
+//   page-break-before: left
+
+h1, h2, h3, h4, h5, h6
+  break-after: avoid
+
+tr, th, td
+  break-inside: avoid
+
+pre
+  // widows: 4
+  // orphans: 4
+  // box-decoration-break: slice
+  break-inside: avoid
+
+section#introduction,
+section#references
+  page-break-before: always
+  page-break-after: always
+
+section#main > article
+  page-break-before: always
+  page-break-after: always
+
+section#postscript
+  break-after: column
+
+.page-break
+  width: 0
+  height: 0
+  page-break-after: always
+
+@media print
+  section.chapter
+    h1, h2, h3
+      margin-right: - $side-column-width
+      clear: both
+
+  // section.chapter,
+  // nav#toc
+  //   h2
+  //     border-color: #000000
+
+  table
+    font-size: 90%
+
+  span.footnote
+    margin-right: $side-column-width + $page-margin-outer
+
+  aside.cssdef
+    width: 60%
+    float: block-end
+    float-reference: page
+    margin-right: -10000px
+    padding-right: 10000px + 20mm
+    margin-left: 1.5rem
+
+    .cssdef-region
+      margin-right: -10000px
+      padding-right: 10000px + 20mm
+
+    // .title
+    //   display: flex
+    //   flex-direction: row
+    //   flex-wrap: wrap
+    //   align-items: flex-start
+
+    h3
+      font-size: 15px
+
+  section.chapter .note
+    padding: 1.4rem 100vw 1.4rem 100vw
+    margin: 0.8rem -100vw
+
+  nav#toc
+    page-break-after: always
+    li.introduction
+    li.section
+    li.postscript
+      break-inside: avoid
+
+  section#index
+    margin-right: - $side-column-width
+    column-count: 3
+    column-gap: 8mm
+
+    li.index-item
+      break-inside: avoid
+
+  #postscript
+  #profile
+    margin-right: - $side-column-width
+
+  #colophon
+    // margin-top: 10rem
+    // margin-right: $side-column-width
+    float-reference: page
+    float: bottom
+
+h1, h2
+  clear: both
+
+@page
+  size: $page-width $page-height
+  page-extra-mixins()
+
+@page :right
+  margin: $page-margin-top $page-margin-outer $page-margin-bottom $page-margin-inner
+
+
+  @bottom-right
+    content: counter(page)
+    font: $nombre-font
+    color: black
+
+@page :left
+  margin: $page-margin-top $page-margin-inner $page-margin-bottom $page-margin-outer
+
+  @bottom-left
+    content: counter(page)
+    font: $nombre-font
+    color: black
+
+@page :first
+  margin-top: $page-margin-top - 5mm
+  margin-bottom: 5mm
+
+  @bottom-left
+    content: ''

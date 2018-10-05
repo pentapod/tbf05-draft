@@ -1,0 +1,383 @@
+@charset "UTF-8"
+
+@import "../node_modules/ress/ress.css"
+@import "_variable"
+@import "_font"
+
+:root
+  font: $body-font
+  line-height: $body-line-height
+  color: #000000
+  word-break: normal
+  line-break: strict
+  overflow-wrap: break-word
+  // letter-spacing: 0.05em
+  font-feature-settings: 'palt', 'pwid'
+
+strong
+  font-weight: 700
+  margin: 0 .2rem
+  letter-spacing: .015rem
+
+h1, h2, h3, h4, h5, h6
+  margin: 0
+  padding: 0
+  border-width: 0
+  font-weight: 600
+  line-height: $header-line-height
+  color: $color-dominant
+
+h1, h2, h3
+  font-feature-settings: 'palt', 'pwid'
+
+h1
+  //margin-bottom: 8mm
+  margin: 0
+  font-weight: 700
+  font-size: 300%
+
+h2
+  margin: 1.8rem 0 1.2rem 0
+  font-weight: 700
+  font-size: 260%
+
+h3
+  //margin-top: 5mm
+  //margin-bottom: 1mm
+  margin: 1.6rem 0 .8rem 0
+  font-weight: 700
+  font-size: 180%
+
+h4
+  //margin-top: 3mm
+  margin: 0 0 .4rem 0
+  font-weight: 700
+  font-size: 130%
+
+ul, dl, pre
+  margin: .8em 0
+
+p
+  margin: 0 0 .8rem 0
+  text-align: justify
+  text-indent: 1rem
+
+ul, ol
+  margin: 0 0 .8rem 0
+  padding-left: 3em
+
+hr
+  border: 0.5mm solid $color-code-bg
+  margin: 8px 0
+
+a, a:hover, a:focus, a:visited
+  color: $color-link-text
+  text-decoration: underline
+
+.clearfix:before
+  content: " "
+  display: table
+  clear: both
+
+code, kbd, pre, samp
+  font-feature-settings: normal
+  letter-spacing: 0
+  font-family: $code-font-family
+
+dt, dd
+  margin: 0
+  display: inline
+dt
+  color: $color-dominant
+  font-weight: 700
+  margin-right: .8rem
+dd
+  margin: 0 0 8px 0
+
+dd + dt::before
+  content: '\A'
+  white-space: pre
+  line-height: 1
+  vertical-align: top
+dt::after
+  content: '\2003▶'
+  font-size: 70%
+
+figure
+  margin: 0
+  text-align: center
+  img
+    max-width: 100%
+    margin: ($image-margin / 2) auto
+  figcaption
+    margin: .6rem auto
+    width: 80%
+    // font-size: 90%
+
+img:not(.emoji)
+  display: block
+  // image-resolution: 300dpi
+  // max-width: 100%
+  // margin: $image-margin auto
+  // border-radius: 2px
+
+table
+  display: table
+  max-width: 100%
+  margin: $image-margin auto
+  border-color: $color-dominant
+  border-collapse: collapse
+  tr.header
+    th
+      text-align: center
+  th, td
+    padding: 1mm 1mm 1mm 0
+    &:first-child
+      padding-left: 1mm
+    background-color: transparent
+    border: 0
+    // word-break: break-all
+  th
+    border-top: 1px solid $color-dominant
+    border-bottom: 1px solid $color-dominant
+  td
+    // border-bottom: .5px solid
+    $narrow-border-width = .4px
+    box-shadow: 0 $narrow-border-width+.3px 0 -.3px $color-dominant
+  tr:last-child
+    border-bottom: 1px solid $color-dominant
+
+code
+  padding: 0
+
+pre
+  position: relative
+  padding: .8em .8em
+  margin-left: -.8em
+  margin-right: -.8em
+  border: 0
+  color: $color-code-text
+  background-color: $color-code-bg
+  font: $pre-font
+  line-height: $pre-line-height
+  white-space: pre-wrap
+  tab-size: 4
+  box-decoration-break: clone
+  word-spacing: normal
+  word-break: break-all
+
+*:not(pre) > code
+  color: $color-code-text
+  font-weight: 400
+  margin: 0 0.2em
+  padding: 0.1em 0.5em
+  border: 0
+  border-radius: 0.2em
+  background-color: $color-code-bg
+
+span.footnote
+  float: footnote
+  font: $body-font
+  line-height: $body-line-height
+  text-align: left !important
+  color: #000000
+  // word-break: break-all
+  word-break: normal
+  line-break: strict
+
+.define-keyword
+  display: none
+
+.drop-shadow
+  border-radius: 3px
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, .2),
+              0px 3px 16px 2px rgba(0, 0, 0, .2)
+
+
+section.chapter .note
+  padding: 2.2rem 2rem 2.2rem 2rem
+  margin: 0 -2rem
+  font-weight: 300
+  background-color: $color-note-bg
+  color: $color-note-body
+
+  h1, h2, h3, h4, h5, h6, pre, code, dt
+    color: $color-note-body
+
+  // h1, h2, h3, h4, h5, h6, strong, dt
+  //   font-weight: 600
+
+  pre, code
+    background-color: $color-note-code-bg
+    // font-weight: 500
+
+  pre
+    border-left: 3px solid $color-note-body
+
+  h2
+    text-shadow: 1px 1px #ffffff
+    border-bottom: 5px dotted $color-note-body
+
+  h3
+    border-left: 3px solid $color-note-body
+
+  .token
+    color: #ffffff // XXX
+
+.kanji-variation
+  font-family: $kanji-variation-font-family
+
+.bitten
+  display: inline
+  box-sizing: border-box
+  border: .1em solid white
+  margin: 0 -.1em
+.bitten.group-1
+  border-color: #f7e119
+.bitten.group-2
+  border-color: #f92672
+
+nav#toc > ol
+  padding:0
+nav#toc
+  li
+    list-style-type: none
+    margin: .4rem 0
+  a
+    display: flex
+    font-feature-settings: 'palt'
+    text-decoration: none
+    color: inherit
+    font-size: 130%
+
+  .title
+    flex-grow: 1
+    small
+      display: block
+      line-height: 1.3
+
+  li.chapter
+    margin: 2rem 0
+
+    & > a
+      display: inline-flex
+      color: #fff
+      font-family: $heading-font-family
+      font-size: 20px
+      font-weight: 600
+      line-height: 24px
+      background-color: $color-dominant-bg
+      padding: 12px 8px 4px 4rem
+      margin-left: -4rem
+
+    ol
+      margin-left: .5rem
+
+  li > a
+      padding-left: 48px
+      margin-left: -48px
+
+section#main
+nav#toc
+section#index
+  h1, h2, h3
+    font-family: $heading-font-family
+
+  h3
+    border-bottom: 1px solid $color-dominant
+
+section#index
+  a
+    font-size: 12px
+    font-feature-settings: 'palt'
+    text-decoration: none
+    color: inherit
+
+  ul#index_item_container
+    position: relative
+    list-style-type: none
+    margin: 0
+
+  .first-letter
+    position: absolute
+    left: 0
+    font-weight: 600
+    font-size: 140%
+    line-height: 1.3
+
+  .index-item
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+  .index-keyword-name
+    line-height: 1
+
+section#profile
+  .author
+    display: flex
+    margin: 2rem 0
+    img
+      margin: 0 10px 8px 0
+
+  .author.inverse
+    flex-direction: row-reverse
+    img
+      margin: 0 0 8px 10px
+
+  .img-container
+    min-width: 80px
+  img
+    width: 60px
+    height: 60px
+    border-radius: 30px
+
+  .profile
+    flex-grow: 1
+    h4
+      display: inline-block
+      margin-bottom: 4px
+
+section#colophon
+  font-weight: 400
+  position: relative
+
+  h2
+    border: 0
+
+  ul.editions
+    padding: 0
+    list-style: none
+    time
+      display: inline-block
+      width: 10em
+
+  .title
+    color: #000000
+
+  table.info
+    margin: 0
+    width: 100%
+    border-top: 2px solid #000000
+    tr:last-child
+      border-bottom: 1px solid #000000
+    td
+      vertical-align: top
+      border: 0
+      box-shadow: none
+      padding-left: 0
+
+  .download-pass
+    position: absolute
+    right: 0
+    bottom: 0
+    padding: 0.1em 0.5em
+    font-weight: 400
+    color: #ffffff
+    background-color: #000000
+    border-radius: 0.2em
+
+@import "_code"
+@import "_counter"
+@import '_page'
+// @import '_monochrome'

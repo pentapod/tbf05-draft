@@ -1,0 +1,84 @@
+
+body
+  counter-reset: chapter section subsection fig tbl footnote
+
+a[data-ref="section"]
+a[data-ref="subsection"]
+a[data-ref="fig"]
+a[data-ref="tbl"]
+  text-decoration: none
+  color: inherit
+  margin: 0 .15em
+
+a[data-ref="section"]::before
+  content: target-counter(attr(href url), section) '章'
+
+a[data-ref="subsection"]::before
+  content: target-counter(attr(href url), section) '.' target-counter(attr(href url), subsection) '章'
+
+a[data-ref="fig"]::before
+  content: '図' target-counter(attr(href url), fig)
+
+a[data-ref="tbl"]::before
+  content: '表' target-counter(attr(href url), tbl)
+
+nav#toc
+  li:not(.chapter) > a::after
+    content: target-counter(attr(href url), page, decimal)
+    font: $nombre-font
+    line-height: $body-line-height
+
+  li.chapter > a::before
+    content: target-counter(attr(href, url), chapter, upper-roman) '.'
+    width: 3rem
+
+  li.section > a::before
+    content: target-counter(attr(href url), section) '.'
+    flex-basis: 2.8rem
+    min-width: 2.8rem
+
+  li.subsection > a::before
+    content: target-counter(attr(href url), section) '.' target-counter(attr(href url), subsection) '.'
+    min-width: 3.4rem
+
+section#index
+  .index-item a::after
+    content: target-counter(attr(href url), page, decimal)
+    font: $nomble-font
+
+section
+  counter-increment: chapter
+
+  h1::before
+    content: counter(chapter, upper-roman) '. '
+
+  article
+    counter-increment: section
+    counter-reset: subsection
+
+    h2::before
+      content: counter(section) '. '
+
+    h3
+      counter-increment: subsection
+    h3::before
+      content: counter(section) '.' counter(subsection) '. '
+
+figcaption.fig
+  counter-increment: fig
+  &::before
+    content: '図' counter(fig) ': '
+
+figcaption.tbl
+  counter-increment: tbl
+  &::before
+    content: '表' counter(tbl) ': '
+
+span.footnote
+  counter-increment: footnote
+  &::footnote-call,
+  &::footnote-marker
+    content: '[' counter(footnote) '] '
+
+  &::footnote-call
+    font-size: 85%
